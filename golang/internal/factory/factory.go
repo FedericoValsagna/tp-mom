@@ -5,9 +5,11 @@ import (
 )
 
 func CreateQueueMiddleware(queueName string, connectionSettings m.ConnSettings) (m.Middleware, error) {
-	return nil, nil
+	q := Queue{}
+	return &q, nil
 }
 
 func CreateExchangeMiddleware(exchange string, keys []string, connectionSettings m.ConnSettings) (m.Middleware, error) {
-	return nil, nil
+	e := Exchange{}
+	return &e, nil
 }
