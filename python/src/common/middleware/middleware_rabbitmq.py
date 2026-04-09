@@ -52,7 +52,6 @@ class MessageMiddlewareExchangeRabbitMQ(MessageMiddlewareExchange):
             on_message_callback(body, ack = lambda:  ch.basic_ack(delivery_tag = method.delivery_tag), nack = lambda: ch.basic_nack(delivery_tag = method.delivery_tag))
         result = self.channel.queue_declare(queue='', exclusive=True)
         queue_name = result.method.queue
-        # Tal vez deban ser multiples queues
         for routing_key in self.routing_keys:
             self.channel.queue_bind(exchange=self.exchange_name, queue=queue_name, routing_key=routing_key)
         self.channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=False)
